@@ -1,0 +1,13 @@
+<h1>Listing Projects</h1>
+
+<div>
+  <% @projects.each do |project| %>
+        <p><%= project.content %></p>
+        <%= link_to 'Edit', edit_project_path(project) %>
+        <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'Add TODO List', projects_path, remote: true %>
