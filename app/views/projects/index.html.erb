@@ -1,13 +1,12 @@
 <h1>Listing Projects</h1>
 
-<div>
-  <% @projects.each do |project| %>
-        <p><%= project.content %></p>
-        <%= link_to 'Edit', edit_project_path(project) %>
-        <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <% end %>
+<div id="projects">
+  <%= render @projects %>
 </div>
 
 <br>
 
-<%= link_to 'Add TODO List', projects_path, remote: true %>
+<%= form_for :project, url: projects_path, :remote => true do |f| %>
+    <%= f.text_area :content, :cols => "20", :rows => "4" %>
+    <%= f.submit 'Add TODO List' %>
+<% end %>

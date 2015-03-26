@@ -1,0 +1,5 @@
+<div id="project_<%= project.id %>">
+  <%= project.content %>
+  <%= link_to 'Update', project, remote: true %>
+  <%= link_to 'Destroy', project, method: :delete, data: {confirm: 'Are you sure?'} %>
+</div>

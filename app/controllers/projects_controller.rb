@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-
+  before_action :find_project, only: [:update, :destroy]
   def index
     @projects = Project.all
   end
@@ -9,19 +9,12 @@ class ProjectsController < ApplicationController
     @project.save
   end
 
-  def edit
-
-  end
-
   def update
-    @project = find_project
     @project.update(project_params)
-    #@project.update_attributes(project_params)
     redirect_to projects_url
   end
 
   def destroy
-    @project = find_project
     @project.destroy
     redirect_to projects_url
   end
@@ -29,7 +22,7 @@ class ProjectsController < ApplicationController
   private
 
   def find_project
-    Project.find(params[:id])
+    @project = Project.find(params[:id])
   end
 
   def project_params
