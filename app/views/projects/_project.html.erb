@@ -2,4 +2,20 @@
   <%= project.content %>
   <%= link_to 'Update', project, remote: true %>
   <%= link_to 'Destroy', project, method: :delete, data: {confirm: 'Are you sure?'} %>
+
+  <%= form_for([project, project.tasks.build]) do |f| %>
+      <p>
+        <%= f.text_area :text %>
+        <%= f.submit %>
+      </p>
+
+  <% end %>
+
+  <% project.tasks.each do |task| %>
+      <div id="task_<%= task.id %>">
+        <%= task.text %>
+        <%= link_to 'Update task', [project, task] %>
+        <%= link_to 'Delete task', [project, task], method: :delete, data: {confirm: 'Are you sure?'} %>
+      </div>
+  <% end %>
 </div>
