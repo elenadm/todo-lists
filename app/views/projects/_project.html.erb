@@ -1,21 +1,29 @@
-<div id="project_<%= project.id %>">
-  <%= project.content %>
-  <%= link_to 'Update', project, remote: true %>
-  <%= link_to 'Destroy', project, method: :delete, data: {confirm: 'Are you sure?'} %>
+<div class="panel panel-primary">
+  <div class="panel-heading" id="project_<%= project.id %>">
+    <p class="panel-title"> <%= project.content %>
+      <%= link_to 'Update', project, remote: true %>
+      <%= link_to 'Destroy', project, method: :delete, data: {confirm: 'Are you sure?'} %>
+    </p>
+  </div>
+  <div class="panel-body">
 
-  <%= form_for([project, project.tasks.build]) do |f| %>
-      <p>
-        <%= f.text_area :text %>
-        <%= f.submit %>
-      </p>
+    <%= form_for([project, project.tasks.build]) do |f| %>
+        <div class="input-group">
+          <%#= f.text_field :text %>
+          <input id="task_text" name="task[text]" type="text" class="form-control" placeholder="Start typing here to create a task..."/>
+          <span class="input-group-btn">
+            <%#= f.submit %>
+            <input name="commit" type="submit" class="btn btn-success" value="Add Task"/>
+          </span>
+        </div>
+    <% end %>
 
-  <% end %>
-
-  <% project.tasks.each do |task| %>
-      <div id="task_<%= task.id %>">
-        <%= task.text %>
-        <%= link_to 'Update task', [project, task] %>
-        <%= link_to 'Delete task', [project, task], method: :delete, data: {confirm: 'Are you sure?'} %>
-      </div>
-  <% end %>
+    <% project.tasks.each do |task| %>
+        <div id="task_<%= task.id %>">
+          <%= task.text %>
+          <%= link_to 'Update task', [project, task] %>
+          <%= link_to 'Delete task', [project, task], method: :delete, data: {confirm: 'Are you sure?'} %>
+        </div>
+    <% end %>
+  </div>
 </div>
