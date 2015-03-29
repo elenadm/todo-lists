@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :find_project, only: [:update, :destroy]
 
   def index
-    @projects = Project.all
+    @projects = Project.includes(:tasks)
   end
 
   def create
