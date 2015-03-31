@@ -3,15 +3,14 @@ class TasksController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @task = @project.tasks.build(task_params)
-    @task.save
+    @task = @project.tasks.create(task_params)
     redirect_to projects_url
   end
 
-  def update
-    @task.update(task_params)
-    redirect_to projects_url
-  end
+  # def update
+  #   @task.update(task_params)
+  #   redirect_to projects_url
+  # end
 
   def destroy
     @task.destroy

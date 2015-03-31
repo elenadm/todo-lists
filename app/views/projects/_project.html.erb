@@ -1,13 +1,13 @@
 <div class="panel panel-primary">
   <div class="panel-heading" id="project_<%= project.id %>">
     <p class="panel-title"> <%= project.content %>
-      <%= link_to 'Update', project, remote: true %>
+      <%#= link_to 'Update', project, remote: true %>
       <%= link_to 'Destroy', project, method: :delete, data: {confirm: 'Are you sure?'} %>
     </p>
   </div>
   <div class="panel-body">
 
-    <%= form_for([project, project.tasks.build]) do |f| %>
+    <%= form_for([project, Task.new]) do |f| %>
         <div class="input-group">
           <%#= f.text_field :text %>
           <input id="task_text" name="task[text]" type="text" class="form-control" placeholder="Start typing here to create a task..."/>
@@ -21,7 +21,7 @@
     <% project.tasks.each do |task| %>
         <div id="task_<%= task.id %>">
           <%= task.text %>
-          <%= link_to 'Update task', [project, task] %>
+          <%#= link_to 'Update task', [project, task] %>
           <%= link_to 'Delete task', [project, task], method: :delete, data: {confirm: 'Are you sure?'} %>
         </div>
     <% end %>
